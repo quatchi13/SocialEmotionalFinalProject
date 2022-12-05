@@ -12,17 +12,27 @@ public class CameraMovement : MonoBehaviour
     [SerializeField]
     private float maxAngle;
 
-    private void Start() {
+    private void Start() 
+    {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
-    private void Update() {
-        
-        Vector2 targetVelocity = GetMousePos() * lookSensitivity;
 
-        rotation += targetVelocity * Time.deltaTime;
+    private void Update() 
+    {
+        //Vector2 targetVelocity = GetMousePos() * lookSensitivity;
+
+        //rotation += targetVelocity * Time.deltaTime;
+
+        //rotation.y = ClampAngle(rotation.y);
+        //transform.localEulerAngles = new Vector3(rotation.y, rotation.x, 0);
+
+        Vector2 aimInput = InputHandler.Instance.Aim();
+
+        rotation += aimInput * lookSensitivity * Time.deltaTime;
 
         rotation.y = ClampAngle(rotation.y);
+
         transform.localEulerAngles = new Vector3(rotation.y, rotation.x, 0);
     }
 

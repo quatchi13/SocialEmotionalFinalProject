@@ -9,27 +9,29 @@ public class InteractionSystem : MonoBehaviour
 
     private Collider currentInteraction;
 
-    private void OnTriggerEnter(Collider other) {
+    private void OnTriggerEnter(Collider other) 
+    {
         if(other.CompareTag("Interactable"))
         {
             if(!other.GetComponent<Interactable>().complete)
             {
                 currentInteraction = other;
                 canInteract = true;
-            }
-            
+            }  
         }
     }
 
-    private void OnTriggerExit(Collider other) {
+    private void OnTriggerExit(Collider other) 
+    {
         if(other.CompareTag("Interactable"))
         {
             canInteract = false;
         }
     }
 
-    private void Update() {
-         if(Input.GetKeyDown(KeyCode.Mouse0) && canInteract)
+    private void Update() 
+    {
+        if(InputHandler.Instance.Interact() && canInteract)
         {
             currentInteraction.GetComponent<Interactable>().Interact();
             canInteract = false;
