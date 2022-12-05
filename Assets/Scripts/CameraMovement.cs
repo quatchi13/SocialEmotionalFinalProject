@@ -18,28 +18,18 @@ public class CameraMovement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    private void Update() 
+    private void Update()
     {
-        //Vector2 targetVelocity = GetMousePos() * lookSensitivity;
+        if (!GetComponent<InteractionSystem>().IsAnyTaskActive())
+        {
+            Vector2 aimInput = InputHandler.Instance.Aim();
 
-        //rotation += targetVelocity * Time.deltaTime;
+            rotation += aimInput * lookSensitivity * Time.deltaTime;
 
-        //rotation.y = ClampAngle(rotation.y);
-        //transform.localEulerAngles = new Vector3(rotation.y, rotation.x, 0);
+            rotation.y = ClampAngle(rotation.y);
 
-        Vector2 aimInput = InputHandler.Instance.Aim();
-
-        rotation += aimInput * lookSensitivity * Time.deltaTime;
-
-        rotation.y = ClampAngle(rotation.y);
-
-        transform.localEulerAngles = new Vector3(rotation.y, rotation.x, 0);
-    }
-
-    private Vector2 GetMousePos()
-    {
-        Vector2 mousePos = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-        return mousePos;
+            transform.localEulerAngles = new Vector3(rotation.y, rotation.x, 0);
+        }
     }
 
     private float ClampAngle(float angle)

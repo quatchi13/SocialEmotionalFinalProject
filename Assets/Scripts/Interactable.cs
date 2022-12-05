@@ -18,21 +18,31 @@ public class Interactable : MonoBehaviour
     [SerializeField]
     private AudioClip completeSound;
 
+    Task task;
+
     public bool complete;
 
     private void Start() {
         ObjectiveManager.instance.interactables.Add(GetComponent<Interactable>());
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.spatialBlend = 1;
+
+        task = GetComponent<Task>();
     }
+
     public void Interact()
+    {
+        task.BeginTask(); 
+    }
+
+    public void CompleteInteraction()
     {
         GetComponent<MeshRenderer>().material = interactMat;
         complete = true;
         ObjectiveManager.instance.CheckObjectives();
         audioSource.clip = interactSound;
         audioSource.loop = true;
-        audioSource.Play();     
+        audioSource.Play();
     }
 
     public bool GetCompletion()
@@ -43,6 +53,7 @@ public class Interactable : MonoBehaviour
     public void SetDefault()
     {
         complete = false;
+        task.ResetTask();
         audioSource.clip = ambientSound;
         GetComponent<MeshRenderer>().material = defaultMat;
     }

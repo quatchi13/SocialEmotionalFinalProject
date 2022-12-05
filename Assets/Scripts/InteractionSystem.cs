@@ -9,6 +9,8 @@ public class InteractionSystem : MonoBehaviour
 
     private Collider currentInteraction;
 
+    bool anyTaskActive;
+
     private void OnTriggerEnter(Collider other) 
     {
         if(other.CompareTag("Interactable"))
@@ -31,10 +33,25 @@ public class InteractionSystem : MonoBehaviour
 
     private void Update() 
     {
-        if(InputHandler.Instance.Interact() && canInteract)
+        anyTaskActive = false;
+
+        foreach (Task task in FindObjectsOfType<Task>())
+        {
+            if (task.IsTaskActive())
+            {
+                anyTaskActive = true;
+            }
+        }
+
+        if (InputHandler.Instance.Interact() && canInteract && !anyTaskActive)
         {
             currentInteraction.GetComponent<Interactable>().Interact();
             canInteract = false;
         }
+    }
+
+    public bool IsAnyTaskActive()
+    {
+        return anyTaskActive;
     }
 }
