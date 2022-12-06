@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Task : MonoBehaviour
 {
+    [SerializeField] protected List<Image> icons = new List<Image>();
+
     protected bool taskBegun;
     protected bool taskComplete;
 
@@ -19,6 +22,11 @@ public class Task : MonoBehaviour
         taskComplete = true;
         taskBegun = false;
 
+        for (int i = 0; i < icons.Count; i++)
+        {
+            icons[i].gameObject.SetActive(false);
+        }
+
         GetComponent<Interactable>().CompleteInteraction();
     }
 
@@ -28,6 +36,11 @@ public class Task : MonoBehaviour
 
         taskComplete = false;
         taskBegun = false;
+
+        for (int i = 0; i < icons.Count; i++)
+        {
+            icons[i].gameObject.SetActive(false);
+        }
     }
 
     public void ResetTask()

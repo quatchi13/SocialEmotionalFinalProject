@@ -14,6 +14,17 @@ public class BrushTeethTask : Task
         if (taskBegun)
         {
             print($"Bumpers Pressed: {currentButtonPresses}");
+
+            if (bumperToPress == 0)
+            {
+                icons[4].gameObject.SetActive(true);
+                icons[6].gameObject.SetActive(false);
+            }
+            if (bumperToPress == 1)
+            {
+                icons[4].gameObject.SetActive(false);
+                icons[6].gameObject.SetActive(true);
+            }
         }
     }
 
@@ -54,6 +65,8 @@ public class BrushTeethTask : Task
             if (currentButtonPresses >= targetButtonPressAmount)
             {
                 CompleteTask();
+
+                break;
             }
 
             yield return null;

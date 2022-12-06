@@ -29,6 +29,11 @@ public class TieShoesTask : Task
 
                     print("Press LB");
 
+                    icons[4].gameObject.SetActive(true);
+                    icons[5].gameObject.SetActive(false);
+                    icons[6].gameObject.SetActive(false);
+                    icons[7].gameObject.SetActive(false);
+
                     if (InputHandler.Instance.LeftBumper())
                     {
                         buttonsPressed++;
@@ -43,6 +48,11 @@ public class TieShoesTask : Task
                 case 1:
 
                     print("Press LT");
+
+                    icons[4].gameObject.SetActive(false);
+                    icons[5].gameObject.SetActive(true);
+                    icons[6].gameObject.SetActive(false);
+                    icons[7].gameObject.SetActive(false);
 
                     if (InputHandler.Instance.LeftTrigger())
                     {
@@ -59,6 +69,11 @@ public class TieShoesTask : Task
 
                     print("Press RB");
 
+                    icons[4].gameObject.SetActive(false);
+                    icons[5].gameObject.SetActive(false);
+                    icons[6].gameObject.SetActive(true);
+                    icons[7].gameObject.SetActive(false);
+
                     if (InputHandler.Instance.RightBumper())
                     {
                         buttonsPressed++;
@@ -73,6 +88,11 @@ public class TieShoesTask : Task
                 case 3:
 
                     print("Press RT");
+
+                    icons[4].gameObject.SetActive(false);
+                    icons[5].gameObject.SetActive(false);
+                    icons[6].gameObject.SetActive(false);
+                    icons[7].gameObject.SetActive(true);
 
                     if (InputHandler.Instance.RightTrigger())
                     {

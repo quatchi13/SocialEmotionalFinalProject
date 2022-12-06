@@ -8,6 +8,9 @@ public class ClothingTask : Task
     {
         base.BeginTask();
 
+        icons[5].gameObject.SetActive(true);
+        icons[7].gameObject.SetActive(true);
+
         print("Press both triggers at the same time");
     }
 

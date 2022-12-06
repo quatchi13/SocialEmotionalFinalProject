@@ -32,7 +32,11 @@ public class Interactable : MonoBehaviour
 
     public void Interact()
     {
-        task.BeginTask(); 
+        task.BeginTask();
+
+        audioSource.clip = interactSound;
+        audioSource.loop = true;
+        audioSource.Play();
     }
 
     public void CompleteInteraction()
@@ -40,9 +44,8 @@ public class Interactable : MonoBehaviour
         GetComponent<MeshRenderer>().material = interactMat;
         complete = true;
         ObjectiveManager.instance.CheckObjectives();
-        audioSource.clip = interactSound;
-        audioSource.loop = true;
-        audioSource.Play();
+
+        audioSource.Stop();
     }
 
     public bool GetCompletion()

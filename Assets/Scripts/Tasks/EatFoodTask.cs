@@ -18,6 +18,9 @@ public class EatFoodTask : Task
         analogInputsCompleted = 0;
         inputStarted = false;
 
+        icons[9].gameObject.SetActive(true);
+        icons[8].gameObject.SetActive(false);
+
         print("Pull down and up and your right analog stick and hold in each position for 2 seconds");
     }
 
@@ -27,6 +30,9 @@ public class EatFoodTask : Task
         {
             if (analogInputsCompleted == 0 || analogInputsCompleted == 2)
             {
+                icons[9].gameObject.SetActive(true);
+                icons[8].gameObject.SetActive(false);
+
                 if (!inputStarted && InputHandler.Instance.Aim().y <= -0.1f)
                 {
                     inputStarted = true;
@@ -36,6 +42,9 @@ public class EatFoodTask : Task
             }
             if (analogInputsCompleted == 1 || analogInputsCompleted == 3)
             {
+                icons[9].gameObject.SetActive(false);
+                icons[8].gameObject.SetActive(true);
+
                 if (!inputStarted && InputHandler.Instance.Aim().y >= 0.1f)
                 {
                     inputStarted = true;

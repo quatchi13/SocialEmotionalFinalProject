@@ -20,6 +20,11 @@ public class PackBagTask : Task
 
                     print("Press A");
 
+                    icons[0].gameObject.SetActive(true);
+                    icons[1].gameObject.SetActive(false);
+                    icons[2].gameObject.SetActive(false);
+                    icons[3].gameObject.SetActive(false);
+
                     if (InputHandler.Instance.Interact())
                     {
                         buttonsPressed++;
@@ -34,6 +39,11 @@ public class PackBagTask : Task
                 case Buttons.B:
 
                     print("Press B");
+
+                    icons[0].gameObject.SetActive(false);
+                    icons[1].gameObject.SetActive(true);
+                    icons[2].gameObject.SetActive(false);
+                    icons[3].gameObject.SetActive(false);
 
                     if (InputHandler.Instance.TaskButton2())
                     {
@@ -50,6 +60,11 @@ public class PackBagTask : Task
 
                     print("Press X");
 
+                    icons[0].gameObject.SetActive(false);
+                    icons[1].gameObject.SetActive(false);
+                    icons[2].gameObject.SetActive(true);
+                    icons[3].gameObject.SetActive(false);
+
                     if (InputHandler.Instance.TaskButton1())
                     {
                         buttonsPressed++;
@@ -64,6 +79,11 @@ public class PackBagTask : Task
                 case Buttons.Y:
 
                     print("Press Y");
+
+                    icons[0].gameObject.SetActive(false);
+                    icons[1].gameObject.SetActive(false);
+                    icons[2].gameObject.SetActive(false);
+                    icons[3].gameObject.SetActive(true);
 
                     if (InputHandler.Instance.TaskButton3())
                     {

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class ObjectiveManager : MonoBehaviour
 {
@@ -15,6 +17,11 @@ public class ObjectiveManager : MonoBehaviour
     public GameObject camEffect;
 
     public bool dayComplete;
+
+    [SerializeField] Transform spawnpoint;
+    [SerializeField] TextMeshProUGUI dayText;
+
+    int currentDay = 1;
     
     // Start is called before the first frame update
     void Awake()
@@ -23,7 +30,6 @@ public class ObjectiveManager : MonoBehaviour
         {
             instance = this;
         }
-        
     }
     
     public void CheckObjectives()
@@ -53,6 +59,11 @@ public class ObjectiveManager : MonoBehaviour
 
         WorsenVision();
         Debug.Log("Day Ended");
+
+        player.transform.position = spawnpoint.position;
+
+        currentDay++;
+        dayText.text = $"Day {currentDay}";
     }
 
     public void WorsenVision()
@@ -61,5 +72,4 @@ public class ObjectiveManager : MonoBehaviour
         color.a += 0.2f; 
         camEffect.GetComponent<MeshRenderer>().material.color = color;
     }
-    
 }
