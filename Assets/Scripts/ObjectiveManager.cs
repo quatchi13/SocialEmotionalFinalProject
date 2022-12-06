@@ -29,7 +29,8 @@ public class ObjectiveManager : MonoBehaviour
     public void CheckObjectives()
     {
         dayComplete = true;
-        for(int count = 0; count < interactables.Count; count ++)
+
+        for (int count = 0; count < interactables.Count; count ++)
         {
             if(!interactables[count].GetCompletion())
             {
@@ -37,7 +38,7 @@ public class ObjectiveManager : MonoBehaviour
             }
         }
 
-        if(dayComplete)
+        if (dayComplete)
         {
             EndDay();
         }
@@ -56,7 +57,7 @@ public class ObjectiveManager : MonoBehaviour
 
     public void WorsenVision()
     {
-         Color color = camEffect.GetComponent<MeshRenderer>().material.color;
+        Color color = camEffect.GetComponent<MeshRenderer>().material.color;
         color.a += 0.2f; 
         camEffect.GetComponent<MeshRenderer>().material.color = color;
     }
